@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maelezo Yako</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    /* Mixture ya rangi za kijani na zambarau kwa gradient ya kuvutia */
+    background: linear-gradient(135deg, #28a745, #8e44ad);
+    padding: 20px;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 20px;
+  }
+
+  .label {
+    color: #fff;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 40px;
+    margin-left: 20px;
+    display: block;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 7px;
+    margin-left: 20px;
+  }
+
+  input {
+    background-color: #fff;
+    border: none;
+    padding: 8px;
+    width: 200px;
+    border-radius: 4px;
+  }
+
+  /* Maandishi ya uthibitisho mdogo */
+  .validation-message {
+    margin-left: 10px;
+    font-size: 10px;
+    color: red;
+    display: none;
+  }
+
+  #submitBtn {
+    margin-top: 60px;
+    margin-left: 40px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #submitBtn:hover {
+    background-color: #ADD8E6;
+  }
+
+  /* Mabadiliko kwa skrini ndogo */
+  @media (max-width: 600px) {
+    body {
+      background: linear-gradient(135deg, #28a745, #8e44ad);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>WASILISHA MAELEZO YAKO HAPA:</h2>
+
+  <!-- Majina -->
+  <label class="label" for="name">Majina Kamili</label>
+  <div class="input-group">
+    <input type="text" id="name" placeholder="Nehema Sanga" />
+    <div id="nameCheck" class="validation-message">Incorrect</div>
+    <div id="nameEmpty" class="validation-message">Jaza Hapa</div>
+  </div>
+
+  <!-- Nambari ya simu -->
+  <label class="label" for="no">Nambari Ya Simu</label>
+  <div class="input-group">
+    <input type="text" id="no" placeholder="07/06xxxxxxxx" />
+    <div id="noCheck" class="validation-message">Sio Sahihi</div>
+    <div id="noEmpty" class="validation-message">jaza Hapa</div>
+  </div>
+
+  <!-- Mkoa -->
+  <label class="label" for="county">Mkoa</label>
+  <div class="input-group">
+    <input type="text" id="county" placeholder="Mbeya" />
+    <div id="countyCheck" class="validation-message">Incorrect</div>
+    <div id="countyEmpty" class="validation-message">Jaza Hapa</div>
+  </div>
+
+  <!-- Kazi/Ajira -->
+  <label class="label" for="job">Kazi/Ajira</label>
+  <div class="input-group">
+    <input type="text" id="job" placeholder="Biashara" />
+    <div id="jobCheck" class="validation-message">Incorrect</div>
+    <div id="jobEmpty" class="validation-message">Jaza Hapa</div>
+  </div>
+
+  <!-- Miaka -->
+  <label class="label" for="age">Miaka</label>
+  <div class="input-group">
+    <input type="text" id="age" placeholder="28" />
+    <div id="ageCheck" class="validation-message">Sio Sahihi</div>
+    <div id="ageEmpty" class="validation-message">Jaza Hapa</div>
+  </div>
+
+  <!-- Button la kuwasilisha -->
+  <button id="submitBtn">Ingiza</button>
+</div>
+
+<!-- Sanduku la onyo la kubinafsi -->
+<div id="customAlert">
+  <span id="alertMessage" style="color: red; font-weight: bold; font-size: 16px;"></span>
+</div>
+
+<script>
+  // Kazi ya kuonyesha ujumbe wa onyo maalum
+  function showCustomAlert(message) {
+    const alertBox = document.getElementById('customAlert');
+    const alertMsg = document.getElementById('alertMessage');
+
+    alertMsg.innerHTML = message;
+    alertBox.style.display = 'block';
+
+    // Ficha baada ya sekunde 2
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 2000);
+  }
+
+  // Kazi ya kuonyesha ujumbe wa ndani kwa muda mfupi
+  function showInlineMessage(elementId) {
+    const el = document.getElementById(elementId);
+    el.style.display = 'inline';
+    setTimeout(() => {
+      el.style.display = 'none';
+    }, 2000);
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    // Safisha ujumbe wa ndani
+    const allMessages = document.querySelectorAll('.validation-message');
+    allMessages.forEach(msg => { msg.style.display = 'none'; });
+
+    // Pata maelezo ya ingizo
+    const name = document.getElementById('name').value.trim();
+    const no = document.getElementById('no').value.trim();
+    const county = document.getElementById('county').value.trim();
+    const age = document.getElementById('age').value.trim();
+    const job = document.getElementById('job').value.trim();
+
+    // Angalia kama nyanja zote ni tupu
+    const fields = [name, no, county, age, job];
+    const allEmpty = fields.every(f => f === '');
+
+    if (allEmpty) {
+      showCustomAlert("Jaza Maelezo Kama Yanavyohitajika");
+      return;
+    }
+
+    // Onyesha ujumbe wa 'Hakikisha umejaza' kwa nyanja zilizo tupu
+    if (name === '') showInlineMessage('nameEmpty');
+    if (no === '') showInlineMessage('noEmpty');
+    if (county === '') showInlineMessage('countyEmpty');
+    if (age === '') showInlineMessage('ageEmpty');
+    if (job === '') showInlineMessage('jobEmpty');
+
+    // Thibitisha umri: ni nambari na si zaidi ya tarakimu 2
+    if (age !== '') {
+      if (isNaN(age) || age.length > 2) {
+        document.getElementById('ageCheck').style.display = 'inline';
+        return;
+      }
+    }
+
+    // Hakikisha nambari ya simu imejazwa
+    if (no === '') {
+      showCustomAlert("Nambari Ya Simu Inahitajika");
+      return;
+    }
+
+    // Thibitisha na kuendelea kama maelezo yote yamejazwa na sahihi
+    if (
+      name === '' ||
+      (no === '' && no.trim() !== '') ||
+      (age !== '' && (isNaN(age) || age.length > 2)) ||
+      county === '' ||
+      job === ''
+    ) {
+      return;
+    }
+
+    // Kama vyote vimeshakwenda sawa, anza mchakato wa kuhamisha
+    window.location.href = `index3.html?name=${encodeURIComponent(name)}&phone_number=${encodeURIComponent(no)}`;
+  });
+</script>
+
+</body>
+      </html>
