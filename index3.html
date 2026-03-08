@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uwekezaji</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #4CAF50, #800080);
+    margin: 0;
+    padding: 20px;
+    color: white;
+  }
+  /* Top container for form */
+  .top-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+  }
+  h2 {
+    font-weight: bold;
+  }
+  #introId {
+    font-size: 20px;
+  }
+  p {
+    font-size: 13px;
+  }
+  #offerRadioGroup {
+    font-size: 12px;
+  }
+  .option {
+    background-color: white;
+    color: black;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .option input[type="radio"] {
+    margin-right: 8px;
+  }
+  button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #ADD8E6;
+    color: black;
+  }
+  #customAlert {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid red;
+    border-radius: 8px;
+    z-index: 9999;
+    font-weight: bold;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+<!-- Top form container -->
+<div class="top-container">
+  <h2 id="introId">
+    Unahitaji Ofa Hii Kwa Ajili Ya Nini?<br/><br/>
+  </h2>
+
+  <form id="offerForm">
+    <div class="options" id="offerRadioGroup">
+      <label class="option">
+        <input type="radio" name="offer" value="Food" /> Karo Ya Shule
+      </label>
+      <label class="option">
+        <input type="radio" name="offer" value="Bills" /> Kodi Ya Nyumba
+      </label>
+      <label class="option">
+        <input type="radio" name="offer" value="Rent" /> Ada
+      </label>
+      <label class="option">
+        <input type="radio" name="offer" value="School Fees" /> Chakula
+      </label>
+      <label class="option">
+        <input type="radio" name="offer" value="Business" /> Mtaji 
+      </label>
+    </div>
+    <button type="button" id="submitBtn">Ingiza</button>
+  </form>
+</div>
+
+<!-- Custom alert -->
+<div id="customAlert">
+  <span id="alertMessage"></span>
+</div>
+
+<script>
+  // Show custom alert
+  function showCustomAlert(message) {
+    const alertBox = document.getElementById('customAlert');
+    const alertMsg = document.getElementById('alertMessage');
+    alertMsg.innerHTML = message;
+    alertBox.style.display = 'block';
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 2000);
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', function() {
+    const options = document.getElementsByName('offer');
+    let selectedValue = null;
+    for (const opt of options) {
+      if (opt.checked) {
+        selectedValue = opt.value;
+        break;
+      }
+    }
+    if (!selectedValue) {
+      showCustomAlert('Chagua Moja Kwenye Orodha.');
+      return;
+    }
+    const params = new URLSearchParams(window.location.search);
+    window.location.href = 'index4.html?' + params.toString();
+  });
+</script>
+</body>
+    </html>
