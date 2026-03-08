@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mpango wa Msaada kwa Ukraine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #4CAF50; /* rangi ya kijani kama akiba */
+            background-image: url('ukraine.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Mwangaza wa kuifanya background ionekane vizuri zaidi */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+            z-index: -1;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6em;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .apply-button {
+            background-color: #ff5733; /* rangi nyepesi */
+            color: #fff;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .apply-button:hover {
+            background-color: #c70039;
+        }
+
+        /* Rangi mbadala kwa skrini ndogo */
+        @media (max-width: 600px) {
+            body {
+                background: linear-gradient(135deg, #4CAF50, #8E44AD);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Karibu kwa Mpango wa Msaada kwa Ukraine</h1>
+        <p>
+            Mipango hii ni jitihada za kibinadamu zinazoungwa mkono na Marekani kutoa msaada wa msingi kwa Waukrainia waliopatwa na mzozo unaoendelea na Urusi. Mpango huu unatoa msaada wa kifedha wa kila mwezi ili kuwasaidia watu kukidhi mahitaji yao ya msingi wakati huu wa ugumu. Ingawa umelenga kusaidia Ukraine, maombi yanakaribishwa kutoka kwa wote, ikiwa ni pamoja na wakazi wa Tanzania na nchi nyingine duniani kote. Unaweza pia kuomba kutoka Tanzania au mahali pengine popote.
+        </p>
+        <p>
+            Hii ni fursa pekee ya kupokea msaada muhimu wakati wa nyakati ngumu. Mchakato ni rahisi, bure, na unapatikana kwa kila anayestahili. Usikose nafasi yako ya kunufaika na mpango huu—msaada upo, na ombi lako linaweza kufanya tofauti kubwa maishani mwako. Omba leo na uanze kutafuta utulivu na matumaini kwa siku zijazo.
+        </p>
+    </div>
+    <div class="button-container">
+        <a href="index2.html" class="apply-button">Jisajili</a>
+    </div>
+</body>
+      </html>
